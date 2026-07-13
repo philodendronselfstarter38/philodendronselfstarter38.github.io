@@ -1,8 +1,12 @@
-theme: minima
+theme: jekyll-theme-cayman
 title: Scaling Pains
 description: Documenting my journey through the jax scaling book
 baseurl: ""
 url: "https://arjuns238.github.io"
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
 collections:
   posts:
     output: true
