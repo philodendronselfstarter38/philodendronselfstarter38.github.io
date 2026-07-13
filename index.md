@@ -15,3 +15,4 @@ This site is now set up to publish posts written in Markdown. Add a new file und
 	<li><a href="{{ post.url }}">{{ post.title }}</a> — <small>{{ post.date | date: "%Y-%m-%d" }}</small></li>
 {% endfor %}
 </ul>
+{% endraw %}
