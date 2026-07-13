@@ -12,7 +12,7 @@ At some point, I realized there was a gap in my understanding. I could explain t
 
 Google's *How to Scale Your Model* is one of the few resources I've found that focuses on these questions directly. So here is my journey through the book and my thoughts overall.
 
-Part 1: Rooflines
+## Part 1: Rooflines
 
 The first section of the scaling book introduces rooflines, which is a useful mental model. Before reading this chapter, I mostly thought about model performance in terms of raw compute, but this chapter really made me appreciate how often the bottleneck is actually memory bandwidth.
 
@@ -20,17 +20,17 @@ The roofline model gives a simple way to reason about this tradeoff. Some operat
 
 I think part 1 took me some time to get used to this sort of thinking model, but once it clicked, the answers to the questions came easier.
 
-Part 2: TPUs
+## Part 2: TPUs
 
 This section was definitely drier than the other chapters. The main thing I took away was the difference in philosophy between GPUs and TPUs. GPUs were originally built for graphics and later evolved into highly flexible parallel processors, while TPUs are much more specialized. TPUs heavily optimize matrix multiplication using systolic arrays, where data flows through a coordinated pipeline rather than treating operations independently. The questions in this section introduced interesting concepts.
 
-Part 3: Sharding
+## Part 3: Sharding
 
 This was by far the hardest chapter in the book, and the one I spent the most time on. It's incredibly dense, introducing both the mechanics of sharding tensors across devices and the communication patterns required to make distributed computation work. The exercises were significantly more challenging than the previous chapters, but they also forced me to slow down and build intuition instead of skimming through the material.
 
 One thing I appreciated was how the chapter systematically derives the four ways to perform distributed matrix multiplication depending on how the input matrices are sharded. It also introduces the four core communication primitives: AllGather, ReduceScatter, AllReduce, and AllToAll. Before this chapter, I knew what these operations did at a high level from seeing them in papers. What I didn't understand was the mathematical reasoning behind them: why each primitive is needed, what information is being communicated, and how they naturally arise from different sharding strategies. I found myself constantly coming back to concepts introduced in this chapter.
 
-## Takeaways
+### Takeaways
 
 <B> The four communication primitives introduced in this chapter: </B>
     
@@ -110,4 +110,4 @@ $$
 \mathbf{A}[I_X, J] \cdot \mathbf{B}[J, K_X] \rightarrow \mathbf{C}[I_X, K_X]
 $$
 
-AllGather one of the dimensions
+AllGather one of the dimensions and then perform the matrix multiply.
